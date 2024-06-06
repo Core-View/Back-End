@@ -16,7 +16,7 @@ oauth2Client.setCredentials({
 
 const accessToken = oauth2Client.getAccessToken();
 
-const sendMail = async (to, subject, html) => {
+const sendMail = async (to, subject, html, res) => {
   const googleTransporter = await nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -42,6 +42,7 @@ const sendMail = async (to, subject, html) => {
     googleTransporter.close();
     console.log(`mail have sent to ${to}`);
   } catch (err) {
+    res.status(500).send({success: false, message: "잠시후 다시 시도해주세요"})
     console.log(err);
   }
 };

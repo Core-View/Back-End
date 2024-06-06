@@ -3,7 +3,8 @@ const router = express.Router();
 const signUpController = require('../controllers/signUpController');
 
 // 회원가입 이메일 전송
-router.post('/email', signUpController.auth);
+router.post("/auth", signUpController.auth);
+router.post("/authcheck", signUpController.emailCheck);
 
 // 회원가입
 router.post('/signup', (req, res) => {
